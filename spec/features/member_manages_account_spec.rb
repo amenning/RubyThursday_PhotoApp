@@ -13,4 +13,13 @@ feature 'member manages account' do
     click_button 'Log in'
     expect(page).to have_text('Signed in successfully.')
   end
+
+  scenario 'by signing out' do
+    login_as(member, scope: :member)
+    visit root_path
+    expect(page).to have_content('Sign out')
+    click_link 'Sign out'
+    expect(page).to have_content('Sign in')
+    expect(page).to have_content('Signed out successfully.')
+  end
 end
