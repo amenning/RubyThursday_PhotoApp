@@ -5,11 +5,11 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = Album.new
+    @album = current_member.albums.new
   end
 
   def create
-    @album = Album.new(album_params)
+    @album = current_member.albums.create(album_params)
 
     respond_to do |format|
       if @album.save

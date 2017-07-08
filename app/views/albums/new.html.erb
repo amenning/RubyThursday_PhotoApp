@@ -15,7 +15,6 @@
 
   <%= form_for @album do |f| %>
     <%= f.text_field :title %>
-    <%= f.hidden_field :member_id, value: current_member.id %>
     <%= f.submit 'Create Album' %>
   <% end %>
 </div>
