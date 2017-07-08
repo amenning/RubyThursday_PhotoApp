@@ -11,6 +11,7 @@
   <body>
     <% if member_signed_in? %>
       <p><%= link_to('Sign out', destroy_member_session_path, method: :delete) %></p>
+      <p><%= link_to('Dashboard', dashboard_member_path(current_member)) %></p>
       <p><%= link_to('Settings', edit_member_registration_path(current_member)) %></p>
     <% else %>
       <p><%= link_to('Sign in', new_member_session_path) %></p>
