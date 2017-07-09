@@ -3,7 +3,7 @@
 <p><%= link_to 'Add Image', new_album_image_path(@album) %></P>
 
 <div>
-  <%= @images.each do |image| %>
+  <% @images.each do |image| %>
     <p><%= image.title %></p>
     <p><%= image.date_taken %></p>
     <%= image_tag(image.album_image(:medium)) %>
