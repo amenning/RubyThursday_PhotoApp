@@ -4,4 +4,5 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :albums
+  has_many :groups
 end
