@@ -21,4 +21,23 @@ feature 'member manages albums' do
     album = Album.last
     expect(album).to have_attributes(title: 'Julia', member_id: member.id)
   end
+
+  scenario 'by viewing the ablum with images' do
+    image = FactoryGirl.create(:image)
+    album = image.album
+    member = album.member
+
+    login_as(member, scope: :member)
+    visit root_path
+    click_link 'Dashboard'
+    expect(page).to have_content 'My Dashboard'
+
+    click_link 'View Albums'
+    expect(page).to have_content album.title
+    click_link 'View Album'
+
+    expect(page).to have_content image.title
+    expect(page).to have_content image.date_taken
+    expect(page).to have_css("img[src*='#{image.album_image.url(:medium)}']")
+  end
 end
