@@ -1,0 +1,20 @@
+<div>
+  <% if @image.errors.any? %>
+    <div id="error_explanation">
+      <h2>Uh oh!  See below for errors!</h2>
+
+      <ul>
+        <% @image.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for([@album, @image], html: { multipart: true }) do |f| %>
+    <%= f.file_field :album_image %>
+    <%= f.text_field :title %>
+    <%= f.text_field :date_taken %>
+    <%= f.submit 'Add Image' %>
+  <% end %>
+</div>

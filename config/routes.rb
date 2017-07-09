@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :members, only: [] do
     get :dashboard, on: :member
   end
-  resources :albums
+  resources :albums do
+    resources :images
+  end
 end
