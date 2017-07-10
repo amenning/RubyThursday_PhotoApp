@@ -41,6 +41,25 @@ feature 'member manages albums' do
     expect(page).to have_css("img[src*='#{image.album_image.url(:medium)}']")
   end
 
+  scenario 'by viewing link to the album as album follower' do
+    image = FactoryGirl.create(:image)
+    album = image.album
+    album_owner = album.member
+    album_follower = member
+    group = Group.create(name: 'The Wahnishes', member: album_owner)
+    AlbumGroup.create(album: album, group: group)
+    GroupMember.create(member: album_follower, group: group)
+
+    login_as(album_follower, scope: :member)
+    visit root_path
+    click_link 'Dashboard'
+    expect(page).to have_content 'My Dashboard'
+
+    click_link 'View Albums'
+    expect(page).to have_content album.title
+    expect(page).to have_link('View Album', href: album_path(album))
+  end
+
   scenario 'by adding groups to have access to the album' do
     group = FactoryGirl.create(:group)
     album = FactoryGirl.create(:album, member: group.member)

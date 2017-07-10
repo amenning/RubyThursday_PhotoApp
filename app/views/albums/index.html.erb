@@ -1,5 +1,12 @@
 <div>
-  <% @albums.each do |album| %>
+  <% @albums_created.each do |album| %>
+    <%= album.title %>
+    <%= link_to 'View Album', album_path(album) %>
+  <% end %>
+</div>
+
+<div>
+  <% @albums_followed.each do |album| %>
     <%= album.title %>
     <%= link_to 'View Album', album_path(album) %>
   <% end %>

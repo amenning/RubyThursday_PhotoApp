@@ -2,7 +2,8 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
   def index
-    @albums = current_member.albums
+    @albums_created = current_member.albums
+    @albums_followed = current_member.albums_followed
   end
 
   def show
