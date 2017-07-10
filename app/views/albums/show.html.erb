@@ -1,6 +1,7 @@
 <h1><%= @album.title %></h1>
 
-<p><%= link_to 'Add Image', new_album_image_path(@album) %></P>
+<p><%= link_to 'Add Image', new_album_image_path(@album) %></p>
+<p><%= link_to 'Add Group Access', edit_album_path(@album) %></p>
 
 <div>
   <% @images.each do |image| %>

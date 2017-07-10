@@ -1,0 +1,31 @@
+<h1>Select a Group to allow access to this Album</h1>
+
+<div>
+  <% if @album.errors.any? %>
+  	<div id="error_explanation">
+    	<h2>Uh oh!  See below for errors!</h2>
+
+    	<ul>
+      	<% @album.errors.full_messages.each do |message| %>
+        	<li><%= message %></li>
+      	<% end %>
+    	</ul>
+  	</div>
+  <% end %>
+
+  <%= form_for @album do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <div>
+      <%= f.fields_for :album_groups do |album_groups| %>
+        <%= render 'album_group_fields', f: album_groups %>
+      <% end %>
+      <div class='add-more-album-groups'>
+        <%= link_to_add_association 'Add Another Group', f, :album_groups %>
+      </div>
+    </div>
+
+    <%= f.submit 'Save Album' %>
+  <% end %>
+</div>

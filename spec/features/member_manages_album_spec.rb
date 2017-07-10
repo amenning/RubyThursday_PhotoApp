@@ -40,4 +40,28 @@ feature 'member manages albums' do
     expect(page).to have_content image.date_taken
     expect(page).to have_css("img[src*='#{image.album_image.url(:medium)}']")
   end
+
+  scenario 'by adding groups to have access to the album' do
+    group = FactoryGirl.create(:group)
+    album = FactoryGirl.create(:album, member: group.member)
+    album_owner = album.member
+    login_as(album_owner, scope: :member)
+    visit album_path(album)
+    expect(page).to have_content album.title
+
+    click_link 'Add Group Access'
+    expect(page).to have_content 'Select a Group to allow access to this Album'
+
+    select group.name
+    click_button 'Save Album'
+    expect(page).to have_content 'Album was successfully updated.'
+    expect(current_path).to eq album_path(album)
+    expect(AlbumGroup.count).to eq 1
+
+    album_group = AlbumGroup.last
+    expect(album_group).to have_attributes(
+      group_id: group.id,
+      album_id: album.id
+    )
+  end
 end
