@@ -27,8 +27,9 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'aws-sdk-rails'
 gem 'aws-sdk', '~> 2'
+gem 'aws-sdk-rails'
+gem 'cocoon' # for nested forms
 gem 'devise'
 gem 'figaro'
 gem 'paperclip', '~> 5.0.0'
