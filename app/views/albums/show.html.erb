@@ -1,7 +1,9 @@
 <h1><%= @album.title %></h1>
 
 <p><%= link_to 'Add Image', new_album_image_path(@album) %></p>
-<p><%= link_to 'Add Group Access', edit_album_path(@album) %></p>
+<% if @album.member == current_member %>
+  <p><%= link_to 'Add Group Access', edit_album_path(@album) %></p>
+<% end %>
 
 <div>
   <% @images.each do |image| %>

@@ -61,4 +61,29 @@ RSpec.describe Member, type: :model do
       expect(results).to_not include album
     end
   end
+
+  describe '#following_album?' do
+    it 'returns true if member has access to the album' do
+      image = FactoryGirl.create(:image)
+      album = image.album
+      album_owner = album.member
+      album_follower = FactoryGirl.create(:member)
+      group = Group.create(name: 'The Wahnishes', member: album_owner)
+      AlbumGroup.create(album: album, group: group)
+      GroupMember.create(member: album_follower, group: group)
+
+      expect(album_follower.following_album?(album)).to eq true
+    end
+
+    it 'returns false if member does not have access to the album' do
+      image = FactoryGirl.create(:image)
+      album = image.album
+      album_owner = album.member
+      non_album_follower = FactoryGirl.create(:member)
+      group = Group.create(name: 'The Wahnishes', member: album_owner)
+      AlbumGroup.create(album: album, group: group)
+
+      expect(non_album_follower.following_album?(album)).to eq false
+    end
+  end
 end

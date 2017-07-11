@@ -58,6 +58,11 @@ feature 'member manages albums' do
     click_link 'View Albums'
     expect(page).to have_content album.title
     expect(page).to have_link('View Album', href: album_path(album))
+    click_link 'View Album'
+
+    expect(page).to have_content image.title
+    expect(page).to have_content image.date_taken
+    expect(page).to have_css("img[src*='#{image.album_image.url(:medium)}']")
   end
 
   scenario 'by adding groups to have access to the album' do

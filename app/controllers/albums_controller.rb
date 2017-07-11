@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :authenticate_member!
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -7,6 +8,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    authorize @album
     @images = @album.images
   end
 
@@ -15,6 +17,7 @@ class AlbumsController < ApplicationController
   end
 
   def edit
+    authorize @album
     1.times { @album.album_groups.build }
   end
 
@@ -33,6 +36,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
+    authorize @album
     respond_to do |format|
       if @album.update(album_params)
         format.html { redirect_to @album, notice: 'Album was successfully updated.' }

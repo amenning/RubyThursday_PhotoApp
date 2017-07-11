@@ -17,4 +17,9 @@ class Member < ApplicationRecord
     Album.joins(:album_groups)
       .merge(AlbumGroup.where(group_id: groups_followed))
   end
+
+  def following_album?(album)
+    albums = albums_followed
+    albums.include?(album)
+  end
 end
