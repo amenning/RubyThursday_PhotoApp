@@ -18,14 +18,7 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
-    <div>
-      <%= f.fields_for :group_members do |group_members| %>
-        <%= render 'group_member_fields', f: group_members %>
-      <% end %>
-      <div class='add-more-group-members'>
-        <%= link_to_add_association 'Add Another Group Member', f, :group_members %>
-      </div>
-    </div>
+
     <%= f.submit 'Create group' %>
   <% end %>
 </div>
