@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   resources :albums do
     resources :images
   end
-  resources :groups
+  resources :groups do
+    get :add_group_members, on: :member
+  end
 end

@@ -1,4 +1,10 @@
 class GroupsController < ApplicationController
+  def add_group_members
+    @group = Group.find(params[:id])
+    AddGroupMembersJob.perform_later(params[:new_members_emails], @group)
+    redirect_to @group, notice: 'Members will be added to this group. Invitations were sent to new members.'
+  end
+
   def new
     @group = current_member.groups.new
     1.times { @group.group_members.build }

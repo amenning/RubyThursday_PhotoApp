@@ -1,3 +1,11 @@
 <h1><%= @group.name %></h1>
 
 <p>Add Members</p>
+
+<div>
+  <%= form_tag(add_group_members_group_path(@group), method: 'get', class: 'nifty_form') do %>
+    <%= label_tag :new_members_emails, 'Enter email addresses separated by commas' %>
+    <%= text_area_tag :new_members_emails %>
+    <%= submit_tag 'Add New Group Members' %>
+  <% end %>
+</div>
