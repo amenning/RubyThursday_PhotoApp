@@ -31,6 +31,7 @@ gem 'aws-sdk', '~> 2'
 gem 'aws-sdk-rails'
 gem 'cocoon' # for nested forms
 gem 'devise'
+gem 'devise_invitable', '~> 1.7.0'
 gem 'figaro'
 gem 'paperclip', '~> 5.0.0'
 gem 'pundit'

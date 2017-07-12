@@ -1,6 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.active_job.queue_adapter = :test
+  config.action_mailer.delivery_method = :test
+  Rails.application.routes.default_url_options = { host: 'localhost', port: 3000 }
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
   # your test database is "scratch space" for the test suite and is wiped
