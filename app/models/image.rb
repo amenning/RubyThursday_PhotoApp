@@ -13,7 +13,7 @@ class Image < ApplicationRecord
     url: ":s3_domain_url",
     styles: {
       small: '100x100#',
-      medium: '220x220#'
+      feed: '500'
     },
     default_url: '400x400.png'
 

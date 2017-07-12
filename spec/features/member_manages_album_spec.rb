@@ -38,7 +38,7 @@ feature 'member manages albums' do
 
     expect(page).to have_content image.title
     expect(page).to have_content image.date_taken
-    expect(page).to have_css("img[src*='#{image.album_image.url(:medium)}']")
+    expect(page).to have_css("img[src*='#{image.album_image.url(:feed)}']")
   end
 
   scenario 'by viewing link to the album as album follower' do
@@ -62,7 +62,7 @@ feature 'member manages albums' do
 
     expect(page).to have_content image.title
     expect(page).to have_content image.date_taken
-    expect(page).to have_css("img[src*='#{image.album_image.url(:medium)}']")
+    expect(page).to have_css("img[src*='#{image.album_image.url(:feed)}']")
   end
 
   scenario 'by adding groups to have access to the album' do

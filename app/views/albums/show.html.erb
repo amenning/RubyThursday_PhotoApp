@@ -1,14 +1,88 @@
-<h1><%= @album.title %></h1>
-
-<p><%= link_to 'Add Image', new_album_image_path(@album) %></p>
-<% if @album.member == current_member %>
-  <p><%= link_to 'Add Group Access', edit_album_path(@album) %></p>
-<% end %>
-
-<div>
-  <% @images.each do |image| %>
-    <p><%= image.title %></p>
-    <p><%= image.date_taken %></p>
-    <%= image_tag(image.album_image(:medium)) %>
-  <% end %>
+<div class="flex-wrapper">
+  <div class="dash-lft-sidenav-pad dash-sidenav w-clearfix">
+    <div>
+      <div class="logo"></div>
+    </div>
+    <div class="dash-sidenav-blk">
+      <%= link_to dashboard_member_path(current_member), class: "link-block w-inline-block"  do %>
+        <div class="text-block txt-nav">My Feed</div>
+      <% end %>
+      <%= link_to albums_path, class: "link-block w-inline-block"  do %>
+        <div class="text-block txt-nav">My Albums</div>
+      <% end %>
+      <%= link_to album_path(@album), class: "link-block w-inline-block"  do %>
+        <div class="text-block txt-nav">Album Feed</div>
+      <% end %>
+      <a class="link-block w-inline-block" href="#">
+        <div class="text-block txt-nav">Album Members</div>
+      </a>
+      <a class="link-block w-inline-block" href="#">
+        <div class="text-block txt-nav">Album Settings</div>
+      </a>
+    </div><%= link_to "+ CREATE NEW GROUP", new_group_path, class: "add-group-btn button w-button" %>
+    <% if @album.member == current_member %>
+      <%= link_to "Add Group Access", edit_album_path(@album), class: "add-group-btn button w-button" %>
+    <% end %>
+  </div>
+  <div class="center-sect">
+    <div class="dash-topnav-stick">
+      <div class="w-row">
+        <div class="w-col w-col-5">
+          <div class="text-block txt-album-title"><%= @album.title %></div>
+        </div>
+        <div class="w-col w-col-5"></div>
+        <div class="w-col w-col-2">
+          <div class="dash-settings-blk w-clearfix"><img class="dash-settings-img" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg"></div>
+        </div>
+      </div>
+    </div>
+    <div class="dash-divider"></div>
+    <div class="main-content-wrapper">
+      <div class="w-container">
+        <div class="main-content-blk">
+          <% @images.each do |image| %>
+            <div class="post-wrapper">
+              <div class="post-header">
+                <div class="w-row">
+                  <div class="w-col w-col-2">
+                    <div class="post-avatar-blk"><%= image_tag "avatar.png",class: "post-avatar" %></div>
+                  </div>
+                  <div class="w-col w-col-8">
+                    <div>
+                      <div class="post-name-txt text-block">Todd Wahnish</div>
+                    </div>
+                  </div>
+                  <div class="w-col w-col-2"></div>
+                </div>
+              </div>
+              <div class="post-img-blk"><%= image_tag(image.album_image(:feed)) %></div>
+              <div class="post-social-blk">
+                <div class="post-likes-blk"></div>
+                <div class="post-views"></div>
+                <div class="post-comments-blk">
+                  <p><%= image.title %></p>
+                  <p><%= image.date_taken %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dash-rt-sidebar-pad dash-sidenav">
+    <div class="w-clearfix"><%= link_to "+ ADD NEW POST TO THIS ALBUM", new_album_image_path(@album), class: "add-post-btn button w-button" %>
+      <div class="dash-album-about-blk">
+        <div class="w-row">
+          <div class="dash-album-avatar-col w-col w-col-3"><img class="dash-album-avatar" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg"></div>
+          <div class="w-col w-col-9">
+            <div class="dash-avatar-col-txt text-block"><%= @album.title %></div>
+          </div>
+        </div>
+        <div class="dash-album-about-txt-blk">
+          <p class="dash-about-txt text-block">Julia is our super cute awesome baby! Celebrate with us by posting your photos and videos on this site so that the whole family can enjoy!</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

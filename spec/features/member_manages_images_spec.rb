@@ -14,7 +14,7 @@ feature 'member manages images' do
     expect(page).to have_content album.title
 
     click_link 'View Album'
-    click_link 'Add Image'
+    click_link 'ADD NEW POST TO THIS ALBUM'
     image_path = 'spec/fixtures/files/example_image.jpg'
     attach_file 'image[album_image]', image_path
     fill_in 'image[title]', with: "Julia's 1st 4th of July"
